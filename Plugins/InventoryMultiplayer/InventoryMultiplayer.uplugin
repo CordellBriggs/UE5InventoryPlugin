@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "InventoryMultiplayer",
+	"Description": "Multiplayer Inventory System",
+	"Category": "Other",
+	"CreatedBy": "Cordell Briggs",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "InventoryMultiplayer",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
