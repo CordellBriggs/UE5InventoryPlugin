@@ -1,0 +1,55 @@
+# Ignore build output
+Binaries
+DerivedDataCache
+Intermediate
+Saved
+Build
+
+# Ignore Visual Studio  Rider project files
+.VC.db
+.VC.opendb
+.sln
+.sdf
+.suo
+.opensdf
+.xcodeproj
+.xcworkspace
+.xcuserstate
+.idea
+
+# Ignore platform-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Unreal auto-generated folders
+# (except Source, Config, and Content we explicitly keep)
+.vs
+.vscode
+.vsconfig
+
+# Ignore temporary files
+.tmp
+.log
+.user
+.userprefs
+
+# Ignore caches and backups
+_BuiltData.uasset
+_Backup.uasset
+_P.uasset
+_P.umap
+
+# Optional keep only lightweight assets
+# If you want to share all codeconfig but no large art assets, uncomment
+# Content
+# !ContentBlueprints
+# !ContentUI
+# !ContentSomeSmallFolderYouNeed
+
+# Keep source and configs
+!Source
+!Config
+!ContentInventory   # -- Example keep inventory UI assets only
+
+# Keep .uproject file
+!.uproject
