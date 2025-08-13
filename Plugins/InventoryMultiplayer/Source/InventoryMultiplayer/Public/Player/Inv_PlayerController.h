@@ -22,6 +22,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category= "Inventory")
 	void ToggleInventory();
+	
 protected:
 
 	virtual void BeginPlay() override;
@@ -61,4 +62,5 @@ private:
 	/** WE Don't USE UPROPERTY identifiers for these Actors, because we WANT them to be garbage collected**/
 	TWeakObjectPtr<AActor> ThisActor;
 	TWeakObjectPtr<AActor> LastActor;
+
 };

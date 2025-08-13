@@ -25,7 +25,11 @@ public:
 	FString GetPickupMessage() const { return PickupMessage; }
 	
 	void PickedUp();
-	
+
+	// The Sound to play when the Item Is PickedUp in the world.
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inventory|Audio")
+	TObjectPtr<USoundBase> PickUpSound;
+
 protected:
 	
 	UFUNCTION(BlueprintImplementableEvent, Category = "Inventory|Item")

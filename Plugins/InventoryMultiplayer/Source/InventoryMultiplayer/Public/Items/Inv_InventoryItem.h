@@ -22,7 +22,7 @@ struct FItemAudioProfile
 	EBaseSoundCategory BaseSoundCategory = EBaseSoundCategory::None; // e.g., "Metallic, "wooden", "organic"
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Inventory|Audio")
-	EAccentSoundCategory AccentSoundCategory = EAccentSoundCategory::None; // e.g., "Gadget, weapon, tool, armor, clothing
+	EAccentSoundCategory AccentSoundCategory = EAccentSoundCategory::None; // e.g., "Gadget, weapon, tool, armor, clothing"
 };
 
 UCLASS()

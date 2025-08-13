@@ -10,7 +10,7 @@ enum class EBaseSoundCategory : uint8
 	Metallic    UMETA(DisplayName = "Metallic"),
 	Cloth       UMETA(DisplayName = "Cloth"),
 	Leather     UMETA(DisplayName = "Leather"),
-	Glass     UMETA(DisplayName = "Glass"),
+	Glass		UMETA(DisplayName = "Glass"),
 	Plastic     UMETA(DisplayName = "Plastic"),
 	Organic     UMETA(DisplayName = "Organic"),
 	None        UMETA(DisplayName = "None")

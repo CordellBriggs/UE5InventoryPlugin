@@ -3,6 +3,7 @@
 
 #include "Items/Components/Inv_ItemComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values for this component's properties
