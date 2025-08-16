@@ -28,6 +28,33 @@ bool UInv_WidgetUtils::IsWithinBounds(const FVector2D& BoundaryPos, const FVecto
 		MousePos.Y >= BoundaryPos.Y && MousePos.Y <= (BoundaryPos.Y + WidgetSize.Y);
 }
 
+FVector2D UInv_WidgetUtils::GetClampedWIdgetPosition(const FVector2D& Boundary, const FVector2D& WidgetSize, const FVector2D& MousePos)
+{
+	FVector2D ClampedPosition = MousePos;
+
+	// Adjust Horizontal position to ensure the widget stays within the boundary.
+	if (MousePos.X + WidgetSize.X > Boundary.X) // widget exceeds the right edge
+	{
+		ClampedPosition.X = Boundary.X - WidgetSize.X;
+	}
+	if (MousePos.X < 0.f) // widget exceeds the left edge.
+	{
+		ClampedPosition.X = 0.f;
+	}
+
+	//Adjust Vertical Position to ensure that the widget stays within the boundaryl.
+	if (MousePos.Y + WidgetSize.Y > Boundary.Y)
+	{
+		ClampedPosition.Y = Boundary.Y - WidgetSize.Y;
+	}
+	if (MousePos.Y < 0.f) // widget exceeds the top edge.
+	{
+		ClampedPosition.Y = 0.f;
+	}
+	
+	return ClampedPosition;
+}
+
 int32 UInv_WidgetUtils::GetIndexFromPosition(const FIntPoint& Position, const int32 Columns)
 {
 	// This function calculates the index of a grid slot based on its position (X, Y) and the number of columns in the grid.

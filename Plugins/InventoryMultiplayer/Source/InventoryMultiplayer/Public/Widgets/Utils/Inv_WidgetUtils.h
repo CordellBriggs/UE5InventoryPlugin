@@ -24,8 +24,13 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category = "Inventory|Widgets")
 	static bool IsWithinBounds(const FVector2D& BoundaryPos, const FVector2D& WidgetSize, const FVector2D& MousePos);
+
+
+	static FVector2D GetClampedWIdgetPosition(const FVector2D& Boundary, const FVector2D& WidgetSize, const FVector2D& MousePos);
 	
 	// This function calculates the index of a grid slot based on its position (X, Y) and the number of columns in the grid.
 	static int32 GetIndexFromPosition(const FIntPoint& Position, const int32 Columns);
 	static FIntPoint GetPositionFromIndex(const int32 Index, const int32 Columns);
+
+	
 };

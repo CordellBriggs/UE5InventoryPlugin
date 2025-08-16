@@ -37,9 +37,18 @@ public:
 
 	UFUNCTION(Server, Reliable)
 	void Server_AddStacksToItem(UInv_ItemComponent* ItemComponent, int32 StackCount, int32 Remainder);
+
+	UFUNCTION(Server, Reliable)
+	void Server_DropItem(UInv_InventoryItem* Item, int32 StackCount);
+
+	UFUNCTION(Server, Reliable)
+	void Server_ConsumeItem(UInv_InventoryItem* Item);
 	
 	void ToggleInventoryMenu();
 	void AddRepSubObj(UObject* SubObj);
+	void SpawnDroppedItem(UInv_InventoryItem* Item, int32 StackCount);
+	UInv_InventoryBase* GetInventoryMenu() const { return InventoryMenu; }
+	
 	
 //	void GetItemManifest();
 
@@ -47,6 +56,8 @@ public:
 	FInventoryItemChange OnItemRemoved;
 	FNoRoomInInventory NoRoomInInventory;
 	FStackChange OnStackChange;
+
+	
 	// Sound to play when inventory is opened
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inventory|Audio")
 	TObjectPtr<USoundBase> OpenInventorySound;
@@ -60,7 +71,9 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-
+	
+	bool bSuppressInventorySounds = false;
+	
 	TWeakObjectPtr<APlayerController> OwningController;
 	
 	void ConstructInventory();
@@ -78,5 +91,19 @@ private:
 	void OpenInventoryMenu();
 	void CloseInventoryMenu();
 
-	bool bSuppressInventorySounds = false;
+	
+	UPROPERTY(EditAnywhere, Category = "Inventory|Item")
+	float DropSpawnAngleMin = -85.f;
+	
+	UPROPERTY(EditAnywhere, Category = "Inventory|Item")
+	float DropSpawnAngleMax = 85.f;
+	
+	UPROPERTY(EditAnywhere, Category = "Inventory|Item")
+	float DropSpawnDistanceMin = 10.f;
+	
+	UPROPERTY(EditAnywhere, Category = "Inventory|Item")
+	float DropSpawnDistanceMax = 50.f;
+
+	UPROPERTY(EditAnywhere, Category = "Inventory|Item")
+	float RelativeSpawnElevation = 70.f;
 };

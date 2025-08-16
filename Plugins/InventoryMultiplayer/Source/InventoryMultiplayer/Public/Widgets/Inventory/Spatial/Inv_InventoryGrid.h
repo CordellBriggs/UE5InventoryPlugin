@@ -8,6 +8,7 @@
 
 #include "Inv_InventoryGrid.generated.h"
 
+class UInv_ItemPopUp;
 class UInv_HoverItem;
 struct FInv_ImageFragment;
 struct FInv_GridFragment;
@@ -29,17 +30,23 @@ public:
 	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 	void ShowCursor();
 	void HideCursor();
+	void SetOwningCanvas(UCanvasPanel* OwningCanvas);
 	
 	EInv_ItemCategory GetItemCategory() const { return ItemCategory; }
 	FInv_SlotAvailabilityResult HasRoomForItem(const UInv_ItemComponent* ItemComponent);
 
 	UFUNCTION()
 	void AddItem(UInv_InventoryItem* Item);
-
+	void DropItem();
+	bool HasHoverItem() const;
+	
 private:
 
+	
 	TWeakObjectPtr<UInv_InventoryComponent> InventoryComponent;
+	TWeakObjectPtr<UCanvasPanel> OwningCanvasPanel;
 
+	
 	void ConstructGrid();
 	FInv_SlotAvailabilityResult HasRoomForItem(const UInv_InventoryItem* Item);
 	FInv_SlotAvailabilityResult HasRoomForItem(const FInv_ItemManifest& Manifest);
@@ -98,8 +105,22 @@ private:
 	UUserWidget* GetHiddenCursorWidget();
 	bool IsSameStackable(const UInv_InventoryItem* ClickedInventoryItem) const;
 	void SwapWithHoverItem(UInv_InventoryItem* ClickedInventoryItem, const int32 GridIndex);
+	bool ShouldSwapStackCounts(const int32 RoomInClickedSlot, const int32 HoveredStackCount, const int32 MaximumStackSize) const;
+	void SwapStackCounts(const int32 ClickedStackCount, const int32 HoveredStackCount, const int32 Index);
+	bool ShouldConsumeHoverItemStacks(const int32 HoveredStackCount, const int32 RoomInClickedSlot) const;
+	void ConsumeHoverItemStacks(const int32 ClickedStackCount, const int32 HoveredStackCount, const int32 Index);
+	bool ShouldFillInStack(const int32 RoomInClickedSlot, const int32 HoveredStackCount) const;
+	void FillInStack(const int32 FillAmount, const int32 Remainder, const int32 Index);
+	void CreateItemPopUp(const int32 GridIndex);
 
 
+
+	
+	UPROPERTY(EditAnywhere, Category="Inventory|ItemPopUp")
+	TSubclassOf<UInv_ItemPopUp> ItemPopUpClass;
+
+	UPROPERTY()
+	TObjectPtr<UInv_ItemPopUp> ItemPopUp;
 	
 	UPROPERTY(EditAnywhere, Category="Inventory|Cursor")
 	TSubclassOf<UUserWidget> VisibleCursorWidgetClass;
@@ -127,6 +148,15 @@ private:
 
 	UFUNCTION()
 	void OnGridSlotUnhovered(int32 GridIndex, const FPointerEvent& MouseEvent);
+
+	UFUNCTION()
+	void OnPopUpMenuSplit(int32 SplitAmount, int32 Index);
+
+	UFUNCTION()
+	void OnPopUpMenuDrop(int32 Index);
+	
+	UFUNCTION()
+	void OnPopUpMenuConsume(int32 Index);
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"),  Category = "Inventory|Grid")
 	EInv_ItemCategory ItemCategory;
@@ -170,6 +200,8 @@ private:
 	UPROPERTY()
 	TObjectPtr<UInv_HoverItem> HoverItem;
 
+	UPROPERTY(EditAnywhere, Category="Inventory|ItemPopUp")
+	FVector2D ItemPopUpOffset;
 	
 	FInv_TileParameters TileParameters;
 	FInv_TileParameters LastTileParameters;
