@@ -20,6 +20,14 @@ namespace GameItems
 				UE_DECLARE_GAMEPLAY_TAG_EXTERN(VikingHandAxe)
 			}
 		}
+		namespace Shields
+		{
+			namespace Wooden
+			{
+				UE_DECLARE_GAMEPLAY_TAG_EXTERN(HoneyWoodShield)
+				UE_DECLARE_GAMEPLAY_TAG_EXTERN(LargeWoodenShield)
+			}
+		}
 		namespace Cloaks
 		{
 			UE_DECLARE_GAMEPLAY_TAG_EXTERN(RedCloak)

@@ -32,6 +32,22 @@ private:
 	FGameplayTag FragmentTag = FGameplayTag::EmptyTag;
 };
 
+/*
+ *Item fragment meant specifically for assimilation into a widget.
+ */
+class UInv_CompositeBase;
+
+USTRUCT(BlueprintType)
+struct FInv_InventoryItemFragment : public FInv_ItemFragment
+{
+	GENERATED_BODY()
+
+	virtual void Assimilate(UInv_CompositeBase* Composite) const;
+protected:
+	bool MatchesWidgetTag(const UInv_CompositeBase* Composite) const;
+	
+};
+
 USTRUCT(BlueprintType)
 struct FInv_GridFragment : public FInv_ItemFragment
 {
@@ -54,11 +70,12 @@ private:
 };
 
 USTRUCT(BlueprintType)
-struct FInv_ImageFragment : public FInv_ItemFragment
+struct FInv_ImageFragment : public FInv_InventoryItemFragment
 {
 	GENERATED_BODY()
 	
 	UTexture2D* GetIcon() const { return Icon; }
+	virtual void Assimilate(UInv_CompositeBase* Composite) const override;
 	
 private:
 	
@@ -67,6 +84,22 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Inventory|Image")
 	FVector2D IconDimensions{44.f, 44.f};
+	
+};
+
+USTRUCT(BlueprintType)
+struct FInv_TextFragment : public FInv_InventoryItemFragment
+{
+	GENERATED_BODY()
+	
+	FText GetText() const { return FragmentText; }
+	void SetText(const FText& Text) { FragmentText = Text; }
+	virtual void Assimilate(UInv_CompositeBase* Composite) const override;
+	
+private:
+	
+	UPROPERTY(EditAnywhere, Category = "Inventory|Text")
+	FText FragmentText;
 	
 };
 

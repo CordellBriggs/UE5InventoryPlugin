@@ -21,6 +21,14 @@ namespace GameItems
 				UE_DEFINE_GAMEPLAY_TAG(VikingHandAxe, "GameItems.Equipment.Weapons.Axes.VikingHandAxe")
 			}
 		}
+		namespace Shields
+		{
+			namespace Wooden
+			{
+				UE_DEFINE_GAMEPLAY_TAG(HoneyWoodShield,"GameItems.Equipment.Shields.Wooden.HoneyWoodShield")
+				UE_DEFINE_GAMEPLAY_TAG(LargeWoodenShield,"GameItems.Equipment.Shields.Wooden.LargeWoodenShield")
+			}
+		}
 		namespace Cloaks
 		{
 			UE_DEFINE_GAMEPLAY_TAG(RedCloak, "GameItems.Equipment.Cloaks.RedCloak")
