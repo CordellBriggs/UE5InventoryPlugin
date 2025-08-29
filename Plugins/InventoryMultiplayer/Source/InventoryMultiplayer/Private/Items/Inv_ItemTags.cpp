@@ -12,10 +12,13 @@ namespace GameItems
 			namespace Swords
 			{
 				UE_DEFINE_GAMEPLAY_TAG(BloodThorneSword, "GameItems.Equipment.Weapons.Swords.BloodThorneSword")
+				UE_DEFINE_GAMEPLAY_TAG(VikingSword, "GameItems.Equipment.Weapons.Swords.VikingSword")
+				UE_DEFINE_GAMEPLAY_TAG(CadariiLongSword, "GameItems.Equipment.Weapons.Swords.CadariiLongSword")
 			}
 			namespace Axes
 			{
 				UE_DEFINE_GAMEPLAY_TAG(Axe, "GameItems.Equipment.Weapons.Axes.Axe")
+				UE_DEFINE_GAMEPLAY_TAG(VikingHandAxe, "GameItems.Equipment.Weapons.Axes.VikingHandAxe")
 			}
 		}
 		namespace Cloaks

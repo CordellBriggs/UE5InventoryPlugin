@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "Widgets/Composite/Inv_Composite.h"
 #include "Inv_ItemDescription.generated.h"
 
 class USizeBox;
@@ -11,7 +12,7 @@ class USizeBox;
  * 
  */
 UCLASS()
-class INVENTORYMULTIPLAYER_API UInv_ItemDescription : public UUserWidget
+class INVENTORYMULTIPLAYER_API UInv_ItemDescription : public UInv_Composite
 {
 	GENERATED_BODY()
 

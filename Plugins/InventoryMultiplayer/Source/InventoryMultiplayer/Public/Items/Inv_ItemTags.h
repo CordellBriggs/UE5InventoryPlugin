@@ -11,10 +11,13 @@ namespace GameItems
 			namespace Swords
 			{
 				UE_DECLARE_GAMEPLAY_TAG_EXTERN(BloodThorneSword)
+				UE_DECLARE_GAMEPLAY_TAG_EXTERN(VikingSword)
+				UE_DECLARE_GAMEPLAY_TAG_EXTERN(CadariiLongSword)
 			}
 			namespace Axes
 			{
 				UE_DECLARE_GAMEPLAY_TAG_EXTERN(Axe)
+				UE_DECLARE_GAMEPLAY_TAG_EXTERN(VikingHandAxe)
 			}
 		}
 		namespace Cloaks
