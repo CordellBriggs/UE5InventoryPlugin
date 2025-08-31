@@ -25,6 +25,7 @@ struct FInv_ItemFragment
 
 	FGameplayTag GetFragmentTag() const { return FragmentTag; }
 	void SetFragmentTag( FGameplayTag Tag) { FragmentTag = Tag; }
+	virtual void Manifest(){}
 	
 private:
 	
@@ -103,6 +104,45 @@ private:
 	
 };
 
+USTRUCT(BlueprintType)
+struct FInv_LabeledNumberFragment : public FInv_InventoryItemFragment
+{
+	GENERATED_BODY()
+
+	virtual void Assimilate(UInv_CompositeBase* Composite) const override;
+	
+	virtual void Manifest() override;
+
+	// When Manifesting for the first time, this fragment will randomize. However, once equipped and dropped, an item should retain the same value, so randomization should not occur.
+	bool bRandomizeOnManifest{true};
+	
+private:
+	
+	UPROPERTY(EditAnywhere, Category = "Inventory|Label")
+	FText Text_Label{};
+	
+	UPROPERTY(VisibleAnywhere, Category = "Inventory|Label")
+	float Value{0.f};
+
+	UPROPERTY(EditAnywhere, Category = "Inventory|Label")
+	float Min{0};
+	
+	UPROPERTY(EditAnywhere, Category = "Inventory|Label")
+	float Max{0};
+
+	UPROPERTY(EditAnywhere, Category = "Inventory|Label")
+	bool bCollapseLabel{false};
+	
+	UPROPERTY(EditAnywhere, Category = "Inventory|Label")
+	bool bCollapseValue{false};
+	
+	UPROPERTY(EditAnywhere, Category = "Inventory|Label")
+	int32 MinFractionDigits{1};
+	
+	UPROPERTY(EditAnywhere, Category = "Inventory|Label")
+	int32 MaxFractionDigits{1};
+	
+};
 USTRUCT(BlueprintType)
 struct FInv_StackableFragment : public FInv_ItemFragment
 {

@@ -54,7 +54,8 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Inventory")
 	TSubclassOf<AActor> PickupActorClass;
-	
+
+	void ClearFragments();
 };
 
 // This utility function retrieves a fragment of a specified type and tag from the item manifest.
